@@ -1,5 +1,9 @@
 // console.log(process.argv)
 
+// to inject the config vars inside the .env
+require('dotenv').config()
+
+
 const cohort1 = process.argv[2]
 const user = process.env.USER
 const shell = process.env.SHELL
@@ -20,7 +24,7 @@ app.get('/hello', (req, res) => {
     res.json({message: 'hey there'})
 })
 
-const port = 9000
+const port = process.env.PORT || 9000 // heroku wants to set its own port
 app.listen(port, () => {
     console.log(`listening on port ${port}`)
 })
